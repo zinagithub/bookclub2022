@@ -1,7 +1,12 @@
 const {TextDecoder, TextEncoder} = require("util");
 
 const express = require('express');
+//Logging
+if (process.env.NODE_ENV === 'development'){
+    app.use(morgan('dev'));
+}
 const dotenv = require('dotenv');
+const morgan = require('morgan');
 const connectDB = require('./config/db');
 
 //local config
