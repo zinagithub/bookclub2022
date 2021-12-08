@@ -39,7 +39,13 @@ app.use(express.static(path.join(__dirname, 'public')));
   app.use(auth(config));
   
   connectDB();
-
+  
+//store user object
+app.get('*', (req, res, next) => {
+    res.locals.user = req.user || null;
+    next()
+})
+  
   // req.isAuthenticated is provided from the auth router
   app.get('/', (req, res) => {
     let obj = req.oidc.user;
@@ -50,7 +56,7 @@ app.use(express.static(path.join(__dirname, 'public')));
             picture : req.oidc.user.picture,
             sub : req.oidc.user.sub
         });
-    
+        res.locals.user = member || null;
         User.findOne(
             {email: member.email},
             function(err, obj){
@@ -66,21 +72,21 @@ app.use(express.static(path.join(__dirname, 'public')));
                 }else{
                     console.log("Member already exist");
                 }
+                
             }
         );
         
     }
-    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
-    
+    console.log(res.locals.user);
+    res.render("index");
   });
   
-
 app.get('/profile', requiresAuth(), (req, res) => {
   res.send(JSON.stringify(req.oidc.user));
 });
 
 // Routes
-app.use('/',require('./routes/index'));
+//app.use('/',require('./routes/index'));
 const PORT = process.env.PORT || 5000;
 
 app.listen(
