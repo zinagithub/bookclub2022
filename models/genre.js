@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
-
+mongoose.models = {};
+mongoose.modelSchemas = {};
 const GenreSchema = new Schema({
     name: {type: String, required: true, minLength: 3, maxLength: 100}
 });
