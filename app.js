@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 //Statis folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-const usersRoutes = require('./routes/user');
+const usersRoutes = require('./routes/users');
 app.use('/',usersRoutes);
 const PORT = process.env.PORT || 5000;
 
