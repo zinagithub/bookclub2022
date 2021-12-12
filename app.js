@@ -24,8 +24,14 @@ app.set("view engine", "ejs");
 //Statis folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-const usersRoutes = require('./routes/users');
-app.use('/',usersRoutes);
+
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
+/*const usersRoutes = require('./routes/users');*/
+app.use('/',usersRouter);
+app.use('/catalog',catalogRouter);
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(
