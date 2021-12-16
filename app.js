@@ -1,5 +1,5 @@
 const express = require('express');
-
+const session = require('express-session');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const path = require('path');
@@ -29,6 +29,14 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
 /*const usersRoutes = require('./routes/users');*/
+
+app.use(session({
+    secret: 'lorem ipsum',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {maxAge: 60000 * 15}
+}))
+
 app.use('/',usersRouter);
 app.use('/catalog',catalogRouter);
 

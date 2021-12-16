@@ -4,6 +4,7 @@ const path = require('path');
 const connectDB = require('../config/db');
 const User = require('../models/user');
 const Book = require('../models/book');
+const BookInstance = require('../models/bookinstance');
 const Genre = require('../models/genre');
 var async = require('async');
 const { auth, requiresAuth } = require('express-openid-connect');
@@ -78,8 +79,6 @@ const config = {
     });
 
   });
-
-
 
   router.get('/profile', requiresAuth(), (req, res) => {
     res.send(JSON.stringify(req.oidc.user));
