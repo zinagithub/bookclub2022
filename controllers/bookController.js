@@ -36,7 +36,7 @@ exports.book_detail = function(req, res,next) {
         // Successful, so render.
         console.log('book : ', results.book);
         console.log('book instance : ',results.book_instance);
-        res.render('book', { title: results.book.title, book: results.book, book_instances: results.book_instance } );
+        res.render('book', { book: results.book, book_instance: results.book_instance } );
     });
     
     

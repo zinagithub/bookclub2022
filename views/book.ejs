@@ -37,7 +37,22 @@
           <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
       </nav>
-
+      <div class="container">
+          <p>Title : <%=  book.title %></p>
+          <p>Author : <%=  book.author.name %></p>
+          <p>Summary : <%=  book.summary %></p>
+          <% book.genre.forEach(g => { %>
+            <p>Genre : <%= g.name %></p>
+          <% }); %>
+            <h4>Copies : </h4>
+          <% book_instance.forEach(i => { %>
+            <p>Status : <%= i.status %> </p>
+            <p>Imprint : <%= i.imprint %> </p>
+            <p>Due back : <%= i.due_back %> </p>
+            <hr>
+          <% }); %>
+          
+      </div>
     <footer class="page-footer orange">
         <div class="container">
           <div class="row">
