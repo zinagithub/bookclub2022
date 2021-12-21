@@ -1,0 +1,14 @@
+<h1>Genre detail : <%= genre.name %>  </h1>
+<div style='margin-left:20px;margin-top:20px'>
+    <h4>Books : </h4>
+    <% genre_books.forEach(b => 
+    {%>
+       <a href="<%= b.url %>"><%= b.url %></a> 
+       <p><%= b.summary %></p>
+       <hr>
+  <p><a href="<%= b.url %>/delete">Delete genre</a></p>
+  <p><a href="<%= b.url %>/update">Update genre</a></p>
+  
+    <% }) %> 
+</div>
+  
